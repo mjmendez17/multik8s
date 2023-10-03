@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+
+spec:
+  replicas: 3 #the number of dif pods that I am gonna set up
+  selector: #its gonna give us access to the deployment itself
+    matchLabels:
+    component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: mjmendez17/multi-server
+          ports:
+            - containerPort: 5000
