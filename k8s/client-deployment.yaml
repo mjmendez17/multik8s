@@ -11,7 +11,7 @@ metadata:
     
     template:
       metadata:
-        label:
+        labels:
           component: web
       
       spec:
