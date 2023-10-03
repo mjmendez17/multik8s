@@ -2,11 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: client-cluster-ip-service
-
 spec: #we specify the way that the service behaves.
   type: ClusterIP
   selector: #its gonna give us access to the deployment itself
     component: web
   ports:
-    - port: 3000
-    targetPort: 3000
+    - port: 3000 
+      targetPort: 3000 #Tener en cuenta que esta fila debe estar tabbeada
