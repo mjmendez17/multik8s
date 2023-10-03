@@ -2,10 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: server-cluster-ip-service
-spec:
+  
+spec: #we specify the way that the service behaves.
   type: ClusterIP
   selector:
     component: server
-    ports:
+  ports:
     - port: 5000
     targetPort: 5000
