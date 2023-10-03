@@ -12,8 +12,22 @@ spec:
       labels:
         component: postgres
     spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim: #This is the request that we need more space for the cluster
+            claimName: database-persistent-volume-claim #this goes to the file "database-persistent-volume-claim.yaml" file 
       containers:
         - name: postgres
           image: postgres
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - name: postgres-storage #must be identical to the previous "volume name"
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: PGPASSWORD #The password that will match into de container
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD

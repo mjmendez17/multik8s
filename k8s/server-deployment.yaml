@@ -17,3 +17,21 @@ spec:
           image: mjmendez17/multi-server
           ports:
             - containerPort: 5000
+          env: #VARIABLES QUE NOS INDICAN COMO COMUNICARNOS CON REDIS y POSTGRES 
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: postgres-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef: #Kubernetes is going to check the secret created previously and compare it with these values
+                  name: pgpassword
+                  key: PGPASSWORD #The password set in the secret: 34506567Abcd
