@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-cluster-ip-service
+spec: #we specify the way that the service behaves.
+  type: ClusterIP
+  selector: #its gonna give us access to the deployment itself
+    component: postgres
+  ports:
+    - port: 5432 
+      targetPort: 5432 #Tener en cuenta que esta fila debe estar tabbeada
